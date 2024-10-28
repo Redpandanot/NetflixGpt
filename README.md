@@ -12,7 +12,7 @@
 - Deploy to PROD
 - Create signup user in Firebase
 - implement Sign in User API
-- Created Redux Store with userSlics
+- Created Redux Store with userSlice
 
 # Features
 - Login/Signup page
