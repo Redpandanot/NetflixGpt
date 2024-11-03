@@ -7,14 +7,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef();
@@ -36,8 +35,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAFwAXAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAYCAwUBB//EADUQAAEEAQAHBQYFBQAAAAAAAAEAAgMEEQUGEiExQVEiMmFxgRQzQqGxwRNikdHhFSRSkrL/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APuKIiAiLCSRrOJ39EGaKK6y74QB5rUbm/3rB6hBPRQmWnneHNcFuZZae8MIN6LwHPBeoCIiAiLCV+wwnnyQa55tnst730UC3YZWryTy5LWDJ6nwW0nJyVzNY8/0efHVv/QQVi/pKzeeTLIQzlG09kfuoeB0XqKD1jjG4OjJa4c2nBVn1d0tJZcatp21IBljzxPgVV10NAEjTFbHV2f9SqLxFK6M7t45hTWuDgCDuK563VpNl+yeBQS0REBRbbu0G9FKUKx753og1qDpwA6Js5/xH1CnKPfr+10poM4L24B8eXzQUJFlNE+GV0crSx7TgtPJYqAurqywP0swn4GOd8sfdcpWHVihKJfbZBsxlpDOrvHyQWRERUT2HaYD1CyWuv7pq2ICh2RiXPUKYtFpmWh3RBFRFCt6VpVCRLO0vHwM7R+XBBy9aqILW3WYBGGyDr0Kra7el9OMu1nV4IXNY4glzzv3b+H8riKCRo+qblyKuHbO2d7ugAyfor1DGyGJkUYwxgAaPBUWhaNK5HYa0OLM9k88gj7qzV9YqUuBKJIT+YZH6hUddFhFLHMwPhe17Dwc05C2xt23hvVBMhGIm+SzQIgLwjIwvUQU/W2a7XlbCzMdV43Pae+eYJ+yrK+oWq0NuB0NiMPjdxBVO0rqxZrOMlMGxD0Hfb6c/T9EHARHAtcWuBDhxBGCEUBEUqjo+3feG1YXPHN3Bo9UGFK1YqTB9V5Die6N4d4Ec19Gotf+AySVn4crmguZnOz4Lm6E1eh0cRNMRLZ5O+Fnl+67aoIiICIiAiIg0WadW0P7mvFL0L2gkKC7V3RLjn2QDye4fddVEHPh0JoyE5ZSiJ/MNr6qeAGgBoAA4AL1EBERAREQf//Z",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -49,7 +47,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -66,11 +63,7 @@ const Login = () => {
         email.current.value,
         password.current.value
       )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-        })
+        .then((userCredential) => {})
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
