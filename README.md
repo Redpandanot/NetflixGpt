@@ -16,6 +16,7 @@
 - Redirecting user to browse page if already logged in an vice versa
 - Fetch data from TMDB
 - use video id from TMDB to embbed iframe from youtube
+- Built Main container
 
 # Features
 
