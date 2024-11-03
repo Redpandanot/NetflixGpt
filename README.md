@@ -17,6 +17,9 @@
 - Fetch data from TMDB
 - use video id from TMDB to embbed iframe from youtube
 - Built Main container
+- Built Secondary Container
+- Built Movie Card and List
+- Fectched info from tmdb
 
 # Features
 
